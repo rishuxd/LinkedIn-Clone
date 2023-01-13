@@ -11,22 +11,22 @@ html {
 }
 
 div,
+span,
+i,
+html,
+nav,
+header,
+img,
+label,
+small,
+p,
 h1,
 h2,
 h3,
-h4,
 h5,
+h4,
 h6,
-header,
-html,
-i,
-img,
-label,
 li,
-nav,
-p,
-small,
-span,
 ul {
   margin: 0;
   padding: 0;

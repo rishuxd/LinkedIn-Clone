@@ -1,12 +1,15 @@
 import styled from "styled-components";
+import Left from "./Left";
+import Main from "./Main";
+import Right from "./Right";
 
 const Home = () => {
   return (
     <Container>
       <Layout>
-        <div>Left</div>
-        <div>main</div>
-        <div>Right</div>
+        <Left/>
+        <Main/>
+        <Right/>
       </Layout>
     </Container>
   );
@@ -28,6 +31,13 @@ const Layout = styled.div`
   grid-template-areas: "left main right";
   grid-template-columns: minmax(0, 5fr) minmax(0, 12fr) minmax(300px, 7fr);
   column-gap: 25px;
+  row-gap: 25px;
+  margin: 25px 0;
+  @media (max-width: 768px){
+    display: flex;
+    flex-direction: column;
+    padding: 0 5px;
+  }
 `;
 
 export default Home;
