@@ -6,17 +6,19 @@ import Right from "./Right";
 const Home = () => {
   return (
     <Container>
-      <Layout>
-        <Left/>
-        <Main/>
-        <Right/>
-      </Layout>
+      <Content>
+        <Layout>
+          <Left />
+          <Main />
+          <Right />
+        </Layout>
+      </Content>
     </Container>
   );
 };
 
 const Container = styled.div`
-  padding-top: 52px;
+  padding-top: 30px;
   max-width: 100%;
 `;
 
@@ -33,7 +35,7 @@ const Layout = styled.div`
   column-gap: 25px;
   row-gap: 25px;
   margin: 25px 0;
-  @media (max-width: 768px){
+  @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
     padding: 0 5px;

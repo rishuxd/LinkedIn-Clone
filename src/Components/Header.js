@@ -95,7 +95,7 @@ const Content = styled.div`
   align-items: center;
   margin: 0 auto;
   min-height: 100%;
-  min-width: 1128px;
+  width: 1128px;
 `;
 
 const Logo = styled.span`
