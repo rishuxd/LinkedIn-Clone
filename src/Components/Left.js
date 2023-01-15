@@ -8,10 +8,10 @@ const Left = (props) => {
           <Background />
           <a>
             <Photo />
-            <Link>Welcome, there!</Link>
+            <Link>Jyoti Swaroop Srivastav</Link>
           </a>
           <a>
-            <AddPhotoText>Add a photo</AddPhotoText>
+            <MyDesc>CS Student at @DU || Content Creator - rishu Unfiltered || Guitarist & Ukulelist</MyDesc>
           </a>
         </UserInfo>
         <Widget>
@@ -22,11 +22,15 @@ const Left = (props) => {
             </div>
             <img src="/Images/widget-icon.svg" alt="" />
           </a>
+          <a>
+            <span>Who's viewed your profile</span>
+            <span>29</span>
+          </a>
         </Widget>
         <Item>
           <span>
             <img src="/Images/item-icon.svg" alt="" />
-            My Items
+            My items
           </span>
         </Item>
       </MeCard>
@@ -42,7 +46,7 @@ const Left = (props) => {
           </span>
         </a>
         <a>
-          <span>Follow Hashtags</span>
+          <span>Followed Hashtags</span>
         </a>
         <a>
           <span>Discover more</span>
@@ -74,25 +78,25 @@ const UserInfo = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 `;
 const Background = styled.div`
-  height: 54px;
+  height: 56.25px;
   margin: -12px -12px 0;
-  background: url("/Images/card-bg.svg");
+  background: url("https://media.licdn.com/dms/image/C4D16AQHm7vmv3Ag1mw/profile-displaybackgroundimage-shrink_200_800/0/1657876302846?e=1679529600&v=beta&t=5640VzTz3ynieF48njoWOrz0cBs1SxU9-wNU0wDbbqs");
   background-position: center;
-  background-size: 462px;
+  background-size: cover;
 `;
 const Photo = styled.div`
-  background-image: url("Images/photo.svg");
+  background-image: url("https://media.licdn.com/dms/image/C4D03AQGif0MHAdPSxw/profile-displayphoto-shrink_100_100/0/1657876349127?e=1679529600&v=beta&t=cl2keRuoksIGPFabHX0PL13Y1lgA9VOCxrQpavi36Qc");
   width: 72px;
   height: 72px;
   box-shadow: none;
   box-sizing: border-box;
   background-position: center;
   background-repeat: no-repeat;
+  border-radius: 50%;
   margin: -38px auto 12px;
   background-color: white;
-  border-radius: 50%;
   border: 2px solid white;
-  background-size: 60%;
+  background-size: contain;
   background-clip: content-box;
 `;
 const Link = styled.div`
@@ -101,11 +105,10 @@ const Link = styled.div`
   font-weight: 600;
   color: rgba(0, 0, 0, 0.9);
 `;
-const AddPhotoText = styled.div`
-  color: #0a66c2;
+const MyDesc = styled.div`
+  color: rgba(0,0,0,0.6);
   margin-top: 4px;
   font-size: 12px;
-  line-height: 1.33;
   font-weight: 400;
 `;
 
@@ -114,7 +117,6 @@ const Widget = styled.div`
   padding: 12px 0;
 
   & > a {
-    text-decoration: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -123,14 +125,30 @@ const Widget = styled.div`
     &:hover {
       background-color: rgba(0, 0, 0, 0.08);
     }
+
+    &:last-child {
+      font-weight:600;
+      font-size: 12px;
+      line-height: 1.33;
+      
+      span {
+        &:first-child{
+          color: rgba(0,0,0,0.6);
+        }
+        &:last-child {
+          color: #0a66c2;
+        }
+      }
+    }
   }
 
   div {
     display: flex;
     flex-direction: column;
     text-align: left;
-
+    
     span {
+      font-weight:600;
       font-size: 12px;
       line-height: 1.33;
 
@@ -145,14 +163,19 @@ const Widget = styled.div`
 `;
 
 const Item = styled.div`
-  border-color: rgba(0, 0, 0, 0.8);
   text-align: left;
   padding: 12px;
   font-size: 12px;
+  font-weight:600;
+  color: rgba(0,0,0,0.8);
 
   span {
     display: flex;
     align-items: center;
+
+    img {
+      margin-right: 8px;
+    }
   }
 
   &:hover {
@@ -161,30 +184,40 @@ const Item = styled.div`
 `;
 
 const CommunityCard = styled(MeCard)`
-  padding: 8px 0 0;
-  text-align: left;
   display: flex;
   flex-direction: column;
-
+  padding: 8px 0 0;
+  text-align: left;
+  font-weight: 600;
+  
   a {
-    color: black;
-    padding: 4px 12px;
+    color: #0a66c2;
+    padding: 8px 12px;
     font-size: 12px;
     &:hover {
-      color: #0a66c2;
+      text-decoration: underline;
     }
-
+    
     span {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+
+      img {
+      margin-left: 18px;
+      }
     }
 
     &:last-child {
       color: rgba(0, 0, 0, 0.6);
       border-top: 1px solid #d6cec2;
       padding: 12px;
+      font-size: 14px;
+      display: inline-flex;
+      justify-content: center;
+      transition-duration: 170ms;
+
       &:hover {
+        text-decoration: none;
         background-color: rgba(0, 0, 0, 0.06);
       }
     }
