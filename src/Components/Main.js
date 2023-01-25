@@ -5,12 +5,12 @@ const Main = (props) => {
     <Container>
       <ShareBox>
         <div>
-          <img src="/Images/user.svg" alt="" />
+          <img src="https://media.licdn.com/dms/image/C4D03AQGif0MHAdPSxw/profile-displayphoto-shrink_100_100/0/1657876349127?e=1679529600&v=beta&t=cl2keRuoksIGPFabHX0PL13Y1lgA9VOCxrQpavi36Qc" alt="" />
           <button>Start a post</button>
         </div>
         <div>
           <button>
-            <img src="/Images/photo-icon.svg" alt="" />
+            <img src="/Images/photo-icon.svg" alt=""/>
             <span>Photo</span>
           </button>
           <button>
@@ -116,22 +116,23 @@ const CommonCard = styled.div`
 const ShareBox = styled(CommonCard)`
   display: flex;
   flex-direction: column;
-  color: #958b7b;
   margin: 0 0 8px;
   background: white;
-
+  
   div {
     button {
+      color: rgba(0, 0, 0, 0.6);
       display: flex;
       align-items: center;
       outline: none;
       background: transparent;
-      color: rgba(0, 0, 0, 0.6);
-      font-size: 16px;
+      font-size: 14px;
       min-height: 48px;
       font-weight: 600;
       line-height: 1.5px;
       border: none;
+      transition: all 170ms ease-in-out;
+      cursor: pointer;
     }
 
     &:first-child {
@@ -146,11 +147,16 @@ const ShareBox = styled(CommonCard)`
       }
 
       button {
-        border: 1px solid rgba(0, 0, 0, 0.15);
+        border: 1px solid rgba(0, 0, 0, 0.3);
         flex-grow: 1;
         margin: 4px 0;
         padding-left: 16px;
         border-radius: 35px;
+        
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.06);
+        }
       }
     }
 
@@ -159,13 +165,15 @@ const ShareBox = styled(CommonCard)`
       justify-content: space-around;
       padding-bottom: 4px;
       flex-wrap: wrap;
-
+      
       button {
+        border-radius: 4px;
         img {
-          margin: 0 4px 0 -2px;
+          margin: 0 8px 0 -2px;
         }
-        span {
-          color: #70b5f9;
+
+        &:hover {
+          background-color: rgba(0,0,0,0.06);
         }
       }
     }

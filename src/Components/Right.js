@@ -31,7 +31,7 @@ const Right = (props) => {
         </FeedList>
 
         <Recommandation>
-          View all recommandations
+          View all recommendations
           <img src="/Images/right-icon.svg" alt="" />
         </Recommandation>
       </FollowCard>
