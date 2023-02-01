@@ -1,44 +1,66 @@
 import styled from "styled-components";
+import { useState } from "react";
 
 const PostModal = (props) => {
+  const [editorText, setEditorText] = useState();
+
+  const reset = (e) => {
+    setEditorText("");
+    props.handleClick(e);
+  };
   return (
-    <Container>
-      <Content>
-        <Header>
-          <h2>Create a post</h2>
-          <button>
-            <img src="/Images/close-icon.svg" alt="" />
-          </button>
-        </Header>
+    <>
+      {props.showModal === "open" && (
+        <Container>
+          <Content>
+            <Header>
+              <h2>Create a post</h2>
+              <button onClick={(event) => reset(event)}>
+                <img src="/Images/close-icon.svg" alt="" />
+              </button>
+            </Header>
 
-        <SharedContent>
-          <UserInfo>
-            <img src="/Images/user.svg" alt="" />
-            <span>Name</span>
-          </UserInfo>
-        </SharedContent>
+            <SharedContent>
+              <UserInfo>
+                <img src="/Images/user.svg" alt="" />
+                <span>Name</span>
+              </UserInfo>
 
-        <ShareCreate>
-          <AttachAssets>
-            <AssetButton>
-              <img src="/Images/photo-icon.svg" alt="" />
-            </AssetButton>
-            <AssetButton>
-              <img src="/Images/video-icon.svg" alt="" />
-            </AssetButton>
-          </AttachAssets>
+              <Editor>
+                <textarea
+                  value={editorText}
+                  onChange={(e) => setEditorText(e.target.value)}
+                  placeholder="Write your text here !"
+                  autoFocus={true}
+                ></textarea>
+              </Editor>
+            </SharedContent>
 
-          <ShareComment>
-            <AssetButton>
-              <img src="/Images/event-icon.svg" alt="" />
-              Anyone
-            </AssetButton>
-          </ShareComment>
+            <ShareCreate>
+              <AttachAssets>
+                <AssetButton>
+                  <img src="/Images/photo-icon.svg" alt="" />
+                </AssetButton>
+                <AssetButton>
+                  <img src="/Images/video-icon.svg" alt="" />
+                </AssetButton>
+              </AttachAssets>
 
-          <PostButton>Post</PostButton>
-        </ShareCreate>
-      </Content>
-    </Container>
+              <ShareComment>
+                <AssetButton>
+                  <img src="/Images/event-icon.svg" alt="" />
+                  Anyone
+                </AssetButton>
+              </ShareComment>
+
+              <PostButton disabled={!editorText ? true : false}>
+                Post
+              </PostButton>
+            </ShareCreate>
+          </Content>
+        </Container>
+      )}
+    </>
   );
 };
 
@@ -82,7 +104,8 @@ const Header = styled.div`
     width: 40px;
     min-width: auto;
     color: rgba(0, 0, 0, 0.15);
-    svg {
+    svg,
+    img {
       pointer-events: none;
     }
   }
@@ -157,13 +180,23 @@ const PostButton = styled.button`
   border: none;
   padding-right: 16px;
   padding-left: 16px;
-  background: #0a66c2;
-  color: white;
+  background: ${(props) => (props.disabled ? "rgba(0,0,0,0.09)" : "#0a66c2")};
+  color: ${(props) => (props.disabled ? "rgba(1,1,1,0.2)" : "white")};
   border-radius: 20px;
   min-width: 60px;
 
   &:hover {
-    background: #004182;
+    background: ${(props) => (props.disabled ? "rgba(0,0,0,0.09)" : "#004182")};
+  }
+`;
+
+const Editor = styled.div`
+  padding: 12px 24px;
+  textarea {
+    width: 100%;
+    min-height: 100px;
+    resize: none;
+    font-size: 16px;
   }
 `;
 
