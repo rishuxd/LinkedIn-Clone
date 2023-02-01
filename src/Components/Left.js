@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 const Left = (props) => {
   return (
@@ -8,10 +9,15 @@ const Left = (props) => {
           <Background />
           <a>
             <Photo />
-            <Link>Jyoti Swaroop Srivastav</Link>
+            <Link>
+              {props.user ? props.user.displayName : "Welcome there!"}
+            </Link>
           </a>
           <a>
-            <MyDesc>CS Student at @DU || Content Creator - rishu Unfiltered || Guitarist & Ukulelist</MyDesc>
+            <MyDesc>
+              CS Student at @DU || Content Creator - rishu Unfiltered ||
+              Guitarist & Ukulelist
+            </MyDesc>
           </a>
         </UserInfo>
         <Widget>
@@ -106,7 +112,7 @@ const Link = styled.div`
   color: rgba(0, 0, 0, 0.9);
 `;
 const MyDesc = styled.div`
-  color: rgba(0,0,0,0.6);
+  color: rgba(0, 0, 0, 0.6);
   margin-top: 4px;
   font-size: 12px;
   font-weight: 400;
@@ -127,13 +133,13 @@ const Widget = styled.div`
     }
 
     &:last-child {
-      font-weight:600;
+      font-weight: 600;
       font-size: 12px;
       line-height: 1.33;
-      
+
       span {
-        &:first-child{
-          color: rgba(0,0,0,0.6);
+        &:first-child {
+          color: rgba(0, 0, 0, 0.6);
         }
         &:last-child {
           color: #0a66c2;
@@ -146,9 +152,9 @@ const Widget = styled.div`
     display: flex;
     flex-direction: column;
     text-align: left;
-    
+
     span {
-      font-weight:600;
+      font-weight: 600;
       font-size: 12px;
       line-height: 1.33;
 
@@ -166,8 +172,8 @@ const Item = styled.div`
   text-align: left;
   padding: 12px;
   font-size: 12px;
-  font-weight:600;
-  color: rgba(0,0,0,0.8);
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
 
   span {
     display: flex;
@@ -189,7 +195,7 @@ const CommunityCard = styled(MeCard)`
   padding: 8px 0 0;
   text-align: left;
   font-weight: 600;
-  
+
   a {
     color: #0a66c2;
     padding: 8px 12px;
@@ -197,13 +203,13 @@ const CommunityCard = styled(MeCard)`
     &:hover {
       text-decoration: underline;
     }
-    
+
     span {
       display: flex;
       align-items: center;
 
       img {
-      margin-left: 18px;
+        margin-left: 18px;
       }
     }
 
@@ -224,4 +230,12 @@ const CommunityCard = styled(MeCard)`
   }
 `;
 
-export default Left;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Left);

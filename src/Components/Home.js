@@ -1,11 +1,14 @@
+import { Navigate } from "react-router-dom";
 import styled from "styled-components";
 import Left from "./Left";
 import Main from "./Main";
 import Right from "./Right";
+import { connect } from "react-redux";
 
-const Home = () => {
+const Home = (props) => {
   return (
     <Container>
+      {!props.user && <Navigate to="/" />}
       <Content>
         <Layout>
           <Left />
@@ -42,4 +45,12 @@ const Layout = styled.div`
   }
 `;
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

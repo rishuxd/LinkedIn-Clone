@@ -1,16 +1,20 @@
 import styled from "styled-components";
+import PostModal from "./PostModal";
 
 const Main = (props) => {
   return (
     <Container>
       <ShareBox>
         <div>
-          <img src="https://media.licdn.com/dms/image/C4D03AQGif0MHAdPSxw/profile-displayphoto-shrink_100_100/0/1657876349127?e=1679529600&v=beta&t=cl2keRuoksIGPFabHX0PL13Y1lgA9VOCxrQpavi36Qc" alt="" />
+          <img
+            src="https://media.licdn.com/dms/image/C4D03AQGif0MHAdPSxw/profile-displayphoto-shrink_100_100/0/1657876349127?e=1679529600&v=beta&t=cl2keRuoksIGPFabHX0PL13Y1lgA9VOCxrQpavi36Qc"
+            alt=""
+          />
           <button>Start a post</button>
         </div>
         <div>
           <button>
-            <img src="/Images/photo-icon.svg" alt=""/>
+            <img src="/Images/photo-icon.svg" alt="" />
             <span>Photo</span>
           </button>
           <button>
@@ -94,6 +98,7 @@ const Main = (props) => {
           </SocialActions>
         </Article>
       </div>
+      <PostModal />
     </Container>
   );
 };
@@ -118,7 +123,7 @@ const ShareBox = styled(CommonCard)`
   flex-direction: column;
   margin: 0 0 8px;
   background: white;
-  
+
   div {
     button {
       color: rgba(0, 0, 0, 0.6);
@@ -152,7 +157,6 @@ const ShareBox = styled(CommonCard)`
         margin: 4px 0;
         padding-left: 16px;
         border-radius: 35px;
-        
 
         &:hover {
           background-color: rgba(0, 0, 0, 0.06);
@@ -165,7 +169,7 @@ const ShareBox = styled(CommonCard)`
       justify-content: space-around;
       padding-bottom: 4px;
       flex-wrap: wrap;
-      
+
       button {
         border-radius: 4px;
         img {
@@ -173,7 +177,7 @@ const ShareBox = styled(CommonCard)`
         }
 
         &:hover {
-          background-color: rgba(0,0,0,0.06);
+          background-color: rgba(0, 0, 0, 0.06);
         }
       }
     }
