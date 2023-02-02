@@ -2,7 +2,18 @@ import styled from "styled-components";
 import { useState } from "react";
 
 const PostModal = (props) => {
-  const [editorText, setEditorText] = useState();
+  const [editorText, setEditorText] = useState("");
+  const [shareImage, setShareImage] = useState("");
+
+  const handleChange = (e) => {
+    const image = e.target.files[0];
+
+    if (image === "" || image === undefined) {
+      alert(`Not an image, the file is of type ${typeof image}`);
+      return;
+    }
+    setShareImage(image);
+  };
 
   const reset = (e) => {
     setEditorText("");
@@ -32,13 +43,27 @@ const PostModal = (props) => {
                   onChange={(e) => setEditorText(e.target.value)}
                   placeholder="Write your text here !"
                   autoFocus={true}
-                ></textarea>
+                />
+                <UploadImage>
+                  <input
+                    type="file"
+                    accept="image/gif, image/jpeg, image/png"
+                    name="image"
+                    id="file"
+                    onChange={handleChange}
+                    style={{ display: "none" }}
+                  />
+                  <p>
+                    <label htmlFor="file">Select an image to share,</label>
+                  </p>
+                  {shareImage && <img src={URL.createObjectURL(shareImage)} />}
+                </UploadImage>
               </Editor>
             </SharedContent>
 
             <ShareCreate>
               <AttachAssets>
-                <AssetButton>
+                <AssetButton onChange={handleChange}>
                   <img src="/Images/photo-icon.svg" alt="" />
                 </AssetButton>
                 <AssetButton>
@@ -73,6 +98,7 @@ const Container = styled.div`
   z-index: 9999;
   color: black;
   background-color: rgba(0, 0, 0, 0.8);
+  animation: fadeIn 0.3s;
 `;
 
 const Content = styled.div`
@@ -197,6 +223,13 @@ const Editor = styled.div`
     min-height: 100px;
     resize: none;
     font-size: 16px;
+  }
+`;
+
+const UploadImage = styled.div`
+  text-align: center;
+  img {
+    width: 100%;
   }
 `;
 
