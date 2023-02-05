@@ -1,15 +1,20 @@
 import { auth, provider, storage } from "../firebase";
+import { SET_USER, SET_LOADING_STATUS, GET_ARTICLES } from "./actionType";
 import db from "../firebase";
-import { SET_USER, SET_LOADING_STATUS } from "./actionType";
 
 export const setUser = (payload) => ({
   type: SET_USER,
   user: payload,
 });
 
-export const setLoading = (staus) => ({
+export const setLoading = (status) => ({
   type: SET_LOADING_STATUS,
-  status: staus,
+  status: status,
+});
+
+export const getArticles = (payload) => ({
+  type: GET_ARTICLES,
+  payload: payload,
 });
 
 export function signInAPI() {
@@ -49,7 +54,7 @@ export function signOutAPI() {
 export function postArticleAPI(payload) {
   return (dispatch) => {
     dispatch(setLoading(true));
-    if (payload.image != "") {
+    if (payload.image !== "") {
       const upload = storage
         .ref(`images/${payload.image.name}`)
         .put(payload.image);
@@ -78,6 +83,7 @@ export function postArticleAPI(payload) {
             comments: 0,
             description: payload.description,
           });
+
           dispatch(setLoading(false));
         }
       );
@@ -92,6 +98,7 @@ export function postArticleAPI(payload) {
         video: payload.video,
         sharedImg: "",
         comments: 0,
+        reposts: 0,
         description: payload.description,
       });
       dispatch(setLoading(false));
@@ -107,6 +114,7 @@ export function getArticlesAPI() {
       .orderBy("actor.date", "desc")
       .onSnapshot((snapshot) => {
         payload = snapshot.docs.map((doc) => doc.data());
+        dispatch(getArticles(payload));
       });
   };
 }
