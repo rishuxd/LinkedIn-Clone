@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import PostModal from "./PostModal";
 import { useState } from "react";
+import { connect } from "react-redux";
 
 const Main = (props) => {
   const [showModal, setShowModal] = useState("close");
@@ -27,11 +28,14 @@ const Main = (props) => {
     <Container>
       <ShareBox>
         <div>
-          <img
-            src="https://media.licdn.com/dms/image/C4D03AQGif0MHAdPSxw/profile-displayphoto-shrink_100_100/0/1657876349127?e=1679529600&v=beta&t=cl2keRuoksIGPFabHX0PL13Y1lgA9VOCxrQpavi36Qc"
-            alt=""
-          />
-          <button onClick={handleClick}>Start a post</button>
+          {props.user && props.user.photoURL ? (
+            <img src={props.user.photoURL} />
+          ) : (
+            <img src="/Images/user.svg" alt="" />
+          )}
+          <button onClick={handleClick} disabled={props.loading ? true : false}>
+            Start a post
+          </button>
         </div>
         <div>
           <button>
@@ -52,8 +56,8 @@ const Main = (props) => {
           </button>
         </div>
       </ShareBox>
-
-      <div>
+      <Content>
+        {props.loading && <img src="/Images/Spin-1s-200px.svg" />}
         <Article>
           <Person>
             <a>
@@ -118,7 +122,7 @@ const Main = (props) => {
             </button>
           </SocialActions>
         </Article>
-      </div>
+      </Content>
       <PostModal showModal={showModal} handleClick={handleClick} />
     </Container>
   );
@@ -351,4 +355,20 @@ const SocialActions = styled.div`
   }
 `;
 
-export default Main;
+const Content = styled(CommonCard)`
+  text-align: center;
+  & > img {
+    width: 30px;
+  }
+`;
+
+const mapStateToProps = (state) => {
+  return {
+    loading: state.articleState.loading,
+    user: state.userState.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
