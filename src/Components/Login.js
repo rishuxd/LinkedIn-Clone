@@ -143,11 +143,17 @@ const Hero = styled.div`
     bottom: 100px;
     right: -150px;
     @media (max-width: 768px) {
-      top: 230px;
-      width: initial;
-      position: initial;
-      height: initial;
+      width: 350px;
+      height: 60vh;
+      right: 0px;
+      position: relative;
+      bottom: 0px;
     }
+  }
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
