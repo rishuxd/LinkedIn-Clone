@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/LinkedIn-Clone/static/css/main.f382aaab.css",
-    "main.js": "/LinkedIn-Clone/static/js/main.a29905ea.js",
+    "main.js": "/LinkedIn-Clone/static/js/main.6aec547e.js",
     "static/media/banner.png": "/LinkedIn-Clone/static/media/banner.94f1733213d58d73a2a3.png",
     "static/media/right-banner.png": "/LinkedIn-Clone/static/media/right-banner.23ced30dc909c08b9d78.png",
     "static/media/icons8-spin.gif": "/LinkedIn-Clone/static/media/icons8-spin.f05536959ac4c23f13e6.gif",
@@ -10,6 +10,6 @@
   },
   "entrypoints": [
     "static/css/main.f382aaab.css",
-    "static/js/main.a29905ea.js"
+    "static/js/main.6aec547e.js"
   ]
 }
