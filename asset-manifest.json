@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.f382aaab.css",
-    "main.js": "/static/js/main.7166f775.js",
-    "static/media/banner.png": "/static/media/banner.94f1733213d58d73a2a3.png",
-    "static/media/right-banner.png": "/static/media/right-banner.23ced30dc909c08b9d78.png",
-    "static/media/icons8-spin.gif": "/static/media/icons8-spin.f05536959ac4c23f13e6.gif",
-    "static/media/user.svg": "/static/media/user.912f30c66c5c71501b5f09573301b3b0.svg",
-    "index.html": "/index.html"
+    "main.css": "/LinkedIn-Clone/static/css/main.f382aaab.css",
+    "main.js": "/LinkedIn-Clone/static/js/main.a00eca0e.js",
+    "static/media/banner.png": "/LinkedIn-Clone/static/media/banner.94f1733213d58d73a2a3.png",
+    "static/media/right-banner.png": "/LinkedIn-Clone/static/media/right-banner.23ced30dc909c08b9d78.png",
+    "static/media/icons8-spin.gif": "/LinkedIn-Clone/static/media/icons8-spin.f05536959ac4c23f13e6.gif",
+    "index.html": "/LinkedIn-Clone/index.html",
+    "static/media/user.svg": "/LinkedIn-Clone/static/media/user.912f30c66c5c71501b5f09573301b3b0.svg"
   },
   "entrypoints": [
     "static/css/main.f382aaab.css",
-    "static/js/main.7166f775.js"
+    "static/js/main.a00eca0e.js"
   ]
 }
