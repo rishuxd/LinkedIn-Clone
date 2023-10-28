@@ -1,14 +1,17 @@
-import { connect } from "react-redux";
 import styled from "styled-components";
+import { connect } from "react-redux";
 import { signOutAPI } from "../Actions";
+import { Navigate } from "react-router-dom";
 
 const Header = (props) => {
-  return (
+  return !props.user ? (
+    <Navigate to="/" />
+  ) : (
     <Container>
       <Content>
         <Logo>
           <a href="/home">
-            <img src="/Images/home-logo.svg" alt="" />
+            <img src={require("../assets/images/Logo.png")} alt="" />
           </a>
         </Logo>
         <Search>
@@ -16,64 +19,67 @@ const Header = (props) => {
             <input type="text" placeholder="Search" />
           </div>
           <SearchIcon>
-            <img src="/Images/search-icon.svg" alt="" />
+            <img src={require("../assets/images/Search.png")} alt="" />
           </SearchIcon>
         </Search>
         <Nav>
           <NavListWrap>
             <NavList className="active">
-              <a>
-                <img src="/Images/nav-home.svg" alt="" />
+              <a href>
+                <img src={require("../assets/images/home.png")} alt="" />
                 <span>Home</span>
               </a>
             </NavList>
             <NavList>
-              <a>
-                <img src="/Images/nav-network.svg" alt="" />
+              <a href>
+                <img src={require("../assets/images/net.png")} alt="" />
                 <span>My Network</span>
               </a>
             </NavList>
             <NavList>
-              <a>
-                <img src="/Images/nav-jobs.svg" alt="" />
+              <a href>
+                <img src={require("../assets/images/jobs.png")} alt="" />
                 <span>Jobs</span>
               </a>
             </NavList>
             <NavList>
-              <a>
-                <img src="/Images/nav-messaging.svg" alt="" />
+              <a href>
+                <img src={require("../assets/images/msg.png")} alt="" />
                 <span>Messaging</span>
               </a>
             </NavList>
             <NavList>
-              <a>
-                <img src="/Images/nav-notifications.svg" alt="" />
+              <a href>
+                <img
+                  src={require("../assets/images/notification.png")}
+                  alt=""
+                />
                 <span>Notifications</span>
               </a>
             </NavList>
             <User>
-              <a>
+              <a href>
                 {props.user && props.user.photoURL ? (
                   <img src={props.user.photoURL} alt="" />
                 ) : (
-                  <img src="/Images/user.svg" alt="" />
+                  <img src={require("../assets/images/user.svg")} alt="" />
                 )}
-                <span>
+                <p>
                   Me
-                  <img src="/Images/down-icon.svg" alt="" />
-                </span>
+                  <img src={require("../assets/images/dropdown.png")} alt="" />
+                </p>
               </a>
 
               <SignOut onClick={() => props.signOut()}>
-                <a>Sign Out</a>
+                <a href>Sign Out</a>
               </SignOut>
             </User>
             <Work>
-              <a>
-                <img src="/Images/nav-work.svg" alt="" />
+              <a href>
+                <img src={require("../assets/images/work.png")} alt="" />
                 <span>
                   Work
-                  <img src="/Images/down-icon.svg" alt="" />
+                  <img src={require("../assets/images/dropdown.png")} alt="" />
                 </span>
               </a>
             </Work>
@@ -85,13 +91,15 @@ const Header = (props) => {
 };
 
 const Container = styled.div`
-  background-color: white;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: #000000;
+
+  border-bottom: 1px solid #22232b;
   left: 0;
   padding: 0 24px;
   position: fixed;
   top: 0;
   width: 100vw;
+  height: 60px;
   z-index: 100;
   box-sizing: border-box;
 `;
@@ -118,19 +126,19 @@ const Search = styled.div`
     max-width: 280px;
 
     input {
+      height: 40px;
       border: none;
       box-shadow: none;
       background-color: #eef3f8;
-      border-radius: 2px;
-      color: rgba(0, 0, 0, 0.9);
-      width: 218px;
+      opacity: 20%;
+      border-radius: 4px;
+      min-width: 240px;
       padding: 0 8px 0 40px;
       line-height: 1.75;
       font-weight: 400;
       font-size: 14px;
       height: 34px;
-      border-color: #dce6f1;
-      vertical-align: text-top;
+      outline: none;
     }
   }
 `;
@@ -156,7 +164,7 @@ const Nav = styled.nav`
     position: fixed;
     left: 0;
     bottom: 0;
-    background: white;
+    background: #000;
     width: 100%;
   }
 `;
@@ -167,6 +175,12 @@ const NavListWrap = styled.ul`
   list-style-type: none;
 
   .active {
+    img {
+      opacity: 1;
+    }
+    span {
+      color: rgba(255, 255, 255);
+    }
     span:after {
       content: "";
       transform: scaleX(1);
@@ -176,7 +190,7 @@ const NavListWrap = styled.ul`
       position: absolute;
       transition: transform 0.2s ease-in-out;
       width: 100%;
-      border-color: rgba(0, 0, 0, 0.9);
+      border-color: rgba(255, 255, 255);
     }
   }
 `;
@@ -184,36 +198,46 @@ const NavListWrap = styled.ul`
 const NavList = styled.li`
   display: flex;
   align-items: center;
+
+  img {
+    opacity: 0.6;
+  }
+
   a {
     align-items: center;
     background: transparent;
+    color: #fff;
     display: flex;
     flex-direction: column;
     font-size: 12px;
     font-weight: 400;
     justify-content: center;
-    line-break: 1.5;
-    min-height: 42px;
+    height: 54px;
     min-width: 80px;
     position: relative;
     text-decoration: none;
 
     span {
-      color: rgba(0, 0, 0, 0.6);
+      color: rgba(255, 255, 255, 0.6);
       display: flex;
       align-items: center;
     }
 
     @media (max-width: 768px) {
-      min-width: 70px;
+      border-top: 2px solid #161722;
+
+      min-width: 84px;
     }
   }
 
   &:hover,
   &:active {
     a {
+      img {
+        opacity: 1;
+      }
       span {
-        color: rgba(0, 0, 0, 0.9);
+        color: rgba(255, 255, 255, 1);
       }
     }
   }
@@ -221,27 +245,46 @@ const NavList = styled.li`
 
 const SignOut = styled.div`
   position: absolute;
-  background: white;
+  background: #161722;
   width: 80px;
   height: 40px;
-  top: 45px;
+  top: 50px;
   transition-duration: 150ms;
   text-align: center;
   display: none;
   font-size: 20px;
   border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 `;
 
 const User = styled(NavList)`
+  a {
+    border: none;
+  }
   a > img {
     width: 24px;
     height: 24px;
     border-radius: 50%;
+    opacity: 1;
+
+    @media (max-width: 768px) {
+      width: 38px;
+      height: 38px;
+    }
   }
 
-  span {
+  p {
     display: flex;
     align-items: center;
+
+    img {
+      margin-top: 2px;
+      margin-left: 4px;
+      width: 12px;
+    }
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   &:hover {
@@ -251,10 +294,37 @@ const User = styled(NavList)`
       justify-content: center;
     }
   }
+
+  @media (max-width: 768px) {
+    position: fixed;
+    right: 0;
+    top: 3px;
+  }
 `;
 
 const Work = styled(User)`
-  border-left: 1px solid rgba(0, 0, 0, 0.8);
+  a > img {
+    border-radius: 0;
+    opacity: 0.8;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 2px;
+  }
+  span {
+    display: flex;
+    align-items: center;
+
+    img {
+      margin-top: 2px;
+      margin-left: 4px;
+      width: 12px;
+    }
+  }
+  border-left: 1px solid rgba(255, 255, 255, 0.6);
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const mapStateToProps = (state) => {

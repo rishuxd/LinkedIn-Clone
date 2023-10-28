@@ -1,13 +1,18 @@
 body {
-  overflow-y: scroll;
   overflow-x: hidden;
 }
 
 :root,
 body,
 html {
-  background-color: #f3f2ef;
+  background-color: #161722;
   box-sizing: border-box;
+}
+::-webkit-scrollbar {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #161722;
 }
 
 div,
@@ -38,11 +43,13 @@ ul {
 }
 
 body {
-  font-family: -apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Fira Sans,Ubuntu,Oxygen,Oxygen Sans,Cantarell,Droid Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Emoji,Segoe UI Symbol,Lucida Grande,Helvetica,Arial,sans-serif;
+  font-family: Roboto, Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans,
+    Cantarell, Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Lucida Grande, Helvetica, Arial, sans-serif;
 }
 
-@keyframes fadeIn{
-  from{
+@keyframes fadeIn {
+  from {
     opacity: 0;
   }
   to {

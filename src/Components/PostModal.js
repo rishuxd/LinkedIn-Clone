@@ -59,17 +59,19 @@ const PostModal = (props) => {
           <Content>
             <Header>
               <h2>Create a post</h2>
-              <button onClick={(event) => reset(event)}>
-                <img src="/Images/close-icon.svg" alt="" />
-              </button>
+              <img
+                src={require("../assets/images/close.png")}
+                onClick={(event) => reset(event)}
+                alt="close"
+              />
             </Header>
 
             <SharedContent>
               <UserInfo>
                 {props.user.photoURL ? (
-                  <img src={props.user.photoURL} />
+                  <img src={props.user.photoURL} alt="user" />
                 ) : (
-                  <img src="/Images/user.svg" alt="" />
+                  <img src={require("../assets/images/user.svg")} alt="user" />
                 )}
 
                 <span>{props.user.displayName}</span>
@@ -79,7 +81,7 @@ const PostModal = (props) => {
                 <textarea
                   value={editorText}
                   onChange={(e) => setEditorText(e.target.value)}
-                  placeholder="Write your text here !"
+                  placeholder="Write your text here!"
                   autoFocus={true}
                 />
                 {assetArea === "image" ? (
@@ -92,16 +94,21 @@ const PostModal = (props) => {
                       onChange={handleChange}
                       style={{ display: "none" }}
                     />
-                    <p>
-                      <label htmlFor="file">Select an image to share,</label>
-                    </p>
+                    <ImageInput>
+                      <label htmlFor="file">
+                        Click here to select an image.
+                      </label>
+                    </ImageInput>
                     {shareImage && (
-                      <img src={URL.createObjectURL(shareImage)} />
+                      <img
+                        src={URL.createObjectURL(shareImage)}
+                        alt="sharedImg"
+                      />
                     )}
                   </UploadImage>
                 ) : (
                   assetArea === "media" && (
-                    <>
+                    <VideoInput>
                       <input
                         type="text"
                         placeholder="Input a video link."
@@ -112,7 +119,7 @@ const PostModal = (props) => {
                       {videoLink && (
                         <ReactPlayer width={"100%"} url={videoLink} />
                       )}
-                    </>
+                    </VideoInput>
                   )
                 )}
               </Editor>
@@ -121,17 +128,20 @@ const PostModal = (props) => {
             <ShareCreate>
               <AttachAssets>
                 <AssetButton onClick={() => switchAssetArea("image")}>
-                  <img src="/Images/photo-icon.svg" alt="" />
+                  <img src={require("../assets/images/img.png")} alt="" />
                 </AssetButton>
                 <AssetButton onClick={() => switchAssetArea("media")}>
-                  <img src="/Images/video-icon.svg" alt="" />
+                  <img
+                    src={require("../assets/images/video.png")}
+                    alt="video"
+                  />
                 </AssetButton>
               </AttachAssets>
 
               <ShareComment>
                 <AssetButton>
-                  <img src="/Images/event-icon.svg" alt="" />
-                  Anyone
+                  <img src={require("../assets/images/event.png")} alt="" />
+                  <span>Anyone</span>
                 </AssetButton>
               </ShareComment>
 
@@ -166,7 +176,7 @@ const Content = styled.div`
   top: 20px;
   width: 100%;
   max-width: 552px;
-  background-color: #ffffff;
+  background-color: #161722;
   max-height: 90%;
   overflow: initial;
   border-radius: 5px;
@@ -178,23 +188,18 @@ const Content = styled.div`
 const Header = styled.div`
   display: block;
   padding: 16px 20px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid #000;
   font-size: 16px;
   line-height: 1.5;
-  color: rgba(0, 0, 0, 0.6);
+  color: #c4c4c4;
   font-weight: 400;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  button {
-    height: 40px;
-    width: 40px;
-    min-width: auto;
-    color: rgba(0, 0, 0, 0.15);
-    svg,
-    img {
-      pointer-events: none;
-    }
+
+  img {
+    width: 16px;
+    cursor: pointer;
   }
 `;
 
@@ -221,10 +226,11 @@ const UserInfo = styled.div`
     background-clip: content-box;
   }
   span {
+    color: #fff;
     font-weight: 600;
     font-size: 16px;
     line-height: 1.5;
-    margin-left: 5px;
+    margin-left: 10px;
   }
 `;
 
@@ -234,12 +240,19 @@ const ShareCreate = styled.div`
   padding: 12px 24px 12px 16px;
 `;
 
-const AssetButton = styled.button`
+const AssetButton = styled.div`
   display: flex;
   align-items: center;
   height: 40px;
   min-width: auto;
-  color: rgba(0, 0, 0, 0.5);
+  color: #c4c4c4;
+  cursor: pointer;
+
+  span {
+    margin-left: 5px;
+    font-size: 12px;
+    margin-top: 2px;
+  }
 `;
 
 const AttachAssets = styled.div`
@@ -254,10 +267,9 @@ const AttachAssets = styled.div`
 const ShareComment = styled.div`
   padding-left: 8px;
   margin-right: auto;
-  border-left: 1px soild rgba(0, 0, 0, 0.15);
 
   ${AssetButton} {
-    svg {
+    img {
       margin-right: 5px;
     }
   }
@@ -267,31 +279,71 @@ const PostButton = styled.button`
   border: none;
   padding-right: 16px;
   padding-left: 16px;
-  background: ${(props) => (props.disabled ? "rgba(0,0,0,0.09)" : "#0a66c2")};
-  color: ${(props) => (props.disabled ? "rgba(1,1,1,0.2)" : "white")};
+  background: ${(props) =>
+    props.disabled ? "rgba(10,102,194, 0.6)" : "#0a66c2"};
+  color: ${(props) => (props.disabled ? "rgba(1,1,1,0.4)" : "#c4c4c4")};
   border-radius: 20px;
   min-width: 60px;
 
   &:hover {
-    background: ${(props) => (props.disabled ? "rgba(0,0,0,0.09)" : "#004182")};
+    cursor: pointer;
+    background: ${(props) =>
+      props.disabled ? "rgba(10,102,194, 0.6)" : "#004182"};
   }
 `;
 
 const Editor = styled.div`
   padding: 12px 24px;
   textarea {
+    box-sizing: border-box;
+    background-color: #202132;
     width: 100%;
     min-height: 100px;
     resize: none;
     font-size: 16px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #000;
+    color: #fff;
   }
 `;
 
 const UploadImage = styled.div`
   text-align: center;
+  color: #c4c4c4;
   img,
   video {
     width: 100%;
+  }
+`;
+
+const VideoInput = styled.div`
+  input {
+    box-sizing: border-box;
+    background-color: #202132;
+    width: 100%;
+    min-height: 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #000;
+    color: #fff;
+  }
+`;
+
+const ImageInput = styled.div`
+  box-sizing: border-box;
+  background-color: #202132;
+  width: 100%;
+  min-height: 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #000;
+  color: #c4c4c4;
+
+  &:hover {
+    background-color: #1b1b2a;
   }
 `;
 

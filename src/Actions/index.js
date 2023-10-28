@@ -20,7 +20,7 @@ export const getArticles = (payload) => ({
 export function signInAPI() {
   return (dispatch) => {
     auth
-      .signInWithPopup(provider)
+      .signInWithRedirect(provider)
       .then((payload) => {
         dispatch(setUser(payload.user));
       })

@@ -35,7 +35,7 @@ const Main = (props) => {
       <ShareBox>
         <div>
           {props.user && props.user.photoURL ? (
-            <img src={props.user.photoURL} />
+            <img src={props.user.photoURL} alt="" />
           ) : (
             <img src="/Images/user.svg" alt="" />
           )}
@@ -45,37 +45,41 @@ const Main = (props) => {
         </div>
         <div>
           <button>
-            <img src="/Images/photo-icon.svg" alt="" />
+            <img src={require("../assets/images/img.png")} alt="" />
             <span>Photo</span>
           </button>
           <button>
-            <img src="/Images/video-icon.svg" alt="" />
+            <img src={require("../assets/images/video.png")} alt="" />
             <span>Photo</span>
           </button>
           <button>
-            <img src="/Images/event-icon.svg" alt="" />
+            <img src={require("../assets/images/event.png")} alt="" />
             <span>Event</span>
           </button>
           <button>
-            <img src="/Images/article-icon.svg" alt="" />
+            <img src={require("../assets/images/article.png")} alt="" />
             <span>Write artical</span>
           </button>
         </div>
       </ShareBox>
 
       <LoadingBox>
-        {props.loading && <img src="/Images/Spin-1s-200px.svg" />}
+        {props.loading && (
+          <img src={require("../assets/images/icons8-spin.gif")} alt="" />
+        )}
       </LoadingBox>
 
       {props.articles.length === 0 ? (
-        <p>Norhing to show.</p>
+        <p style={{ color: "#c4c4c4", textAlign: "center" }}>
+          Norhing to show.
+        </p>
       ) : (
         <Content>
           {props.articles.length > 0 &&
             props.articles.map((article, key) => (
               <Article key={key}>
                 <Person>
-                  <a>
+                  <a href>
                     <img src={article.actor.image} alt="" />
                     <div>
                       <span>{article.actor.title}</span>
@@ -86,56 +90,48 @@ const Main = (props) => {
                     </div>
                   </a>
                   <button>
-                    <img src="/Images/ellipsis.svg" alt="" />
+                    <img src={require("../assets/images/elipses.png")} alt="" />
                   </button>
                 </Person>
                 <Description>{article.description}</Description>
                 <SharedImage>
-                  <a>
+                  <a href>
                     {!article.sharedImg && article.video ? (
                       <ReactPlayer width={"100%"} url={article.video} />
                     ) : (
-                      article.sharedImg && <img src={article.sharedImg} />
+                      article.sharedImg && (
+                        <img src={article.sharedImg} alt="" />
+                      )
                     )}
                   </a>
                 </SharedImage>
                 <Socials>
                   <li>
                     <button>
-                      <img
-                        src="https://static.licdn.com/sc/h/8ekq8gho1ruaf8i7f86vd1ftt"
-                        alt=""
-                      />
-                      <img
-                        src="https://static.licdn.com/sc/h/cpho5fghnpme8epox8rdcds22"
-                        alt=""
-                      />
-                      <img
-                        src="https://static.licdn.com/sc/h/lhxmwiwoag9qepsh4nc28zus"
-                        alt=""
-                      />
+                      <img src={require("../assets/images/like.png")} alt="" />
+                      <img src={require("../assets/images/heart.png")} alt="" />
                       <span>{article.comments}</span>
                     </button>
                   </li>
                   <li>
-                    <a>{article.reposts} reposts</a>
+                    <a href> 0 reposts</a>
                   </li>
                 </Socials>
                 <SocialActions>
                   <button>
-                    <img src="/Images/like-icon.svg" alt="" />
+                    <img src={require("../assets/images/thumb.png")} alt="" />
                     <span>Like</span>
                   </button>
                   <button>
-                    <img src="/Images/comment-icon.svg" alt="" />
+                    <img src={require("../assets/images/cmnt.png")} alt="" />
                     <span>Comments</span>
                   </button>
                   <button>
-                    <img src="/Images/repost-icon.svg" alt="" />
+                    <img src={require("../assets/images/repost.png")} alt="" />
                     <span>Repost</span>
                   </button>
                   <button>
-                    <img src="/Images/send-icon.svg" alt="" />
+                    <img src={require("../assets/images/send.png")} alt="" />
                     <span>Send</span>
                   </button>
                 </SocialActions>
@@ -153,25 +149,24 @@ const Container = styled.div`
 `;
 
 const CommonCard = styled.div`
-  background-color: #fff;
+  background-color: #000000;
   border-radius: 5px;
-  border: none;
   text-align: center;
   margin-bottom: 8px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 0 0 1px rgba(0 0 0 /15%), 0 0 0 rgba(0 0 0 /20%);
+  box-shadow: 0 0 0 1px rgba(0 0 0 / 70%), 0 0 0 rgba(0 0 0 /50%);
 `;
 
 const ShareBox = styled(CommonCard)`
   display: flex;
   flex-direction: column;
   margin: 0 0 8px;
-  background: white;
+  background: #000000;
 
   div {
     button {
-      color: rgba(0, 0, 0, 0.6);
+      color: #c4c4c4;
       display: flex;
       align-items: center;
       outline: none;
@@ -197,14 +192,14 @@ const ShareBox = styled(CommonCard)`
       }
 
       button {
-        border: 1px solid rgba(0, 0, 0, 0.3);
         flex-grow: 1;
         margin: 4px 0;
         padding-left: 16px;
-        border-radius: 35px;
+        border-radius: 47px;
+        background-color: #22232b;
 
         &:hover {
-          background-color: rgba(0, 0, 0, 0.06);
+          background-color: #202132;
         }
       }
     }
@@ -216,9 +211,12 @@ const ShareBox = styled(CommonCard)`
       flex-wrap: wrap;
 
       button {
-        border-radius: 4px;
         img {
           margin: 0 8px 0 -2px;
+        }
+
+        span {
+          margin-top: 3px;
         }
 
         &:hover {
@@ -231,7 +229,7 @@ const ShareBox = styled(CommonCard)`
 
 const Article = styled(CommonCard)`
   padding: 0;
-  margin: 0 0 8px;
+  margin: 0 0 12px;
   overflow: visible;
 `;
 
@@ -240,7 +238,6 @@ const Person = styled.div`
   align-items: center;
   flex-wrap: nowrap;
   margin-bottom: 8px;
-  /* padding-right: 40px; */
   padding: 12px 16px 0;
 
   a {
@@ -252,6 +249,7 @@ const Person = styled.div`
     img {
       width: 48px;
       height: 48px;
+      border-radius: 50%;
     }
 
     div {
@@ -265,15 +263,14 @@ const Person = styled.div`
       span {
         text-align: left;
 
-        &:first-child {
-          font-size: 14px;
-          font-weight: 700;
-          color: rgba(0, 0, 0, 1);
-        }
-
         &:nth-child(n + 1) {
           font-size: 12px;
-          color: rgba(0, 0, 0, 0.6);
+          color: #c4c4c4;
+        }
+        &:nth-child(1) {
+          font-size: 14px;
+          font-weight: 600;
+          color: #fff;
         }
       }
     }
@@ -283,13 +280,14 @@ const Person = styled.div`
     background: transparent;
     border: none;
     outline: none;
+    margin-top: -10px;
   }
 `;
 
 const Description = styled.div`
   text-align: left;
   font-size: 14px;
-  color: rgba(0, 0, 0, 0.9);
+  color: #fff;
   padding: 0 16px;
   overflow: hidden;
 `;
@@ -297,7 +295,7 @@ const Description = styled.div`
 const SharedImage = styled.div`
   position: relative;
   display: block;
-  background-color: #f9fafb;
+  background-color: #000;
   margin-top: 8px;
   width: 100%;
 
@@ -316,14 +314,26 @@ const Socials = styled.ul`
   padding: 8px 0;
   margin: 0 16px;
   overflow: hidden;
-  border-bottom: 1px solid #e9efdf;
+  border-bottom: 1px solid #161722;
 
   li {
     margin-right: 5px;
     font-size: 12px;
 
     button {
-      color: rgba(0, 0, 0, 0.6);
+      img {
+        width: 16px;
+
+        &:first-child {
+          margin-top: 1.2px;
+        }
+      }
+      span {
+        margin-left: 5px;
+        margin-top: 1px;
+      }
+
+      color: #c4c4c4;
       display: flex;
       background: transparent;
       border: none;
@@ -335,7 +345,7 @@ const Socials = styled.ul`
     }
 
     a {
-      color: rgba(0, 0, 0, 0.6);
+      color: #c4c4c4;
       &:hover {
         color: #1f80e2;
         text-decoration: underline;
@@ -352,11 +362,16 @@ const SocialActions = styled.div`
   margin: 0;
 
   button {
+    img {
+      width: 18px;
+      margin-right: 8px;
+    }
+
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 8px;
-    color: rgba(0, 0, 0, 0.5);
+    color: #fff;
     background: transparent;
     outline: none;
     border: none;
@@ -370,7 +385,7 @@ const SocialActions = styled.div`
     }
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.08);
+      background-color: #202132;
     }
   }
 `;
@@ -378,7 +393,9 @@ const SocialActions = styled.div`
 const LoadingBox = styled(CommonCard)`
   text-align: center;
   & > img {
+    padding: 5px;
     width: 30px;
+    filter: invert(100%);
   }
 `;
 

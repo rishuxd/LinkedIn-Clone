@@ -5,12 +5,16 @@ import { signInAPI } from "../Actions";
 import { Navigate } from "react-router-dom";
 
 const Login = (props) => {
-  return (
+  return props.user ? (
+    <Navigate to="/home" />
+  ) : (
     <Container>
-      {props.user && <Navigate to="/home" />}
       <Nav>
         <a href="/">
-          <img src="/Images/login-logo.svg" alt="" />
+          <ImageLogo
+            src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Logo.svg.original.svg"
+            alt=""
+          />
         </a>
         <div>
           <Join>Join Now</Join>
@@ -20,11 +24,17 @@ const Login = (props) => {
       <Section>
         <Hero>
           <h1>Welcome to your prefessional community.</h1>
-          <img src="/Images/login-hero.svg" alt="" />
+          <img
+            src="https://static.licdn.com/aero-v1/sc/h/dxf91zhqd2z6b0bwg85ktm5s4"
+            alt=""
+          />
         </Hero>
         <Form>
           <Google onClick={() => props.SignIn()}>
-            <img src="/Images/google.svg" alt="" />
+            <img
+              src="https://img.icons8.com/?size=512&id=17949&format=png"
+              alt=""
+            />
             Sign in with Google
           </Google>
         </Form>
@@ -37,6 +47,9 @@ const Container = styled.div`
   padding: 0px;
 `;
 
+const ImageLogo = styled.img`
+  width: 150px;
+`;
 const Nav = styled.nav`
   display: flex;
   align-items: center;
@@ -60,11 +73,12 @@ const Nav = styled.nav`
 
 const Join = styled.button`
   font-size: 16px;
-  padding: 10px 12px;
+  padding: 12px 14px;
   color: rgba(0, 0, 0, 0.7);
   margin-right: 12px;
   border: none;
   border-radius: 4px;
+  border-radius: 24px;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.08);
@@ -126,7 +140,7 @@ const Hero = styled.div`
     width: 700px;
     height: 670px;
     position: absolute;
-    bottom: -2px;
+    bottom: 100px;
     right: -150px;
     @media (max-width: 768px) {
       top: 230px;
@@ -168,6 +182,7 @@ const Google = styled.button`
 
   img {
     margin-right: 10px;
+    width: 30px;
   }
 `;
 

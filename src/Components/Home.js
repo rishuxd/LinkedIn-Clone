@@ -6,9 +6,10 @@ import Right from "./Right";
 import { connect } from "react-redux";
 
 const Home = (props) => {
-  return (
+  return !props.user ? (
+    <Navigate to="/" />
+  ) : (
     <Container>
-      {!props.user && <Navigate to="/" />}
       <Content>
         <Layout>
           <Left />
@@ -21,7 +22,7 @@ const Home = (props) => {
 };
 
 const Container = styled.div`
-  padding-top: 30px;
+  padding-top: 50px;
   max-width: 100%;
 `;
 

@@ -6,12 +6,12 @@ const Right = (props) => {
       <FollowCard>
         <Title>
           <h2>Add to your feed</h2>
-          <img src="/Images/feed-icon.svg" alt="" />
+          <img src={require("../assets/images/feed.png")} alt="" />
         </Title>
 
         <FeedList>
           <li>
-            <a>
+            <a href>
               <Avatar />
             </a>
             <div>
@@ -20,7 +20,7 @@ const Right = (props) => {
             </div>
           </li>
           <li>
-            <a>
+            <a href>
               <Avatar />
             </a>
             <div>
@@ -32,15 +32,12 @@ const Right = (props) => {
 
         <Recommandation>
           View all recommendations
-          <img src="/Images/right-icon.svg" alt="" />
+          <img src={require("../assets/images/recmnd.png")} alt="" />
         </Recommandation>
       </FollowCard>
 
       <BannerCard>
-        <img
-          src="https://cdn.ihsmarkit.com/www/images/0821/Company-178447404.jpg"
-          alt=""
-        />
+        <img src={require("../assets/images/right-banner.png")} alt="" />
       </BannerCard>
     </Container>
   );
@@ -51,12 +48,12 @@ const Container = styled.div`
 `;
 
 const FollowCard = styled.div`
-  background-color: #fff;
+  background-color: #000;
   position: relative;
   border-radius: 5px;
   border: none;
   padding: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   overflow: hidden;
   text-align: center;
   box-shadow: 0 0 0 1px rgba(0 0 0 / 15%), 0 0 0 rgba(0 0 0 / 20%);
@@ -68,11 +65,16 @@ const Title = styled.div`
   justify-content: space-between;
   font-size: 16px;
   width: 100%;
-  color: rgba(0, 0, 0, 0.6);
+  color: #c4c4c4;
+
+  img {
+    opacity: 0.7;
+  }
 `;
 
 const FeedList = styled.ul`
   margin-top: 16px;
+  margin-bottom: 30px;
 
   li {
     display: flex;
@@ -84,20 +86,28 @@ const FeedList = styled.ul`
     div {
       display: flex;
       flex-direction: column;
+
+      span {
+        color: #fff;
+      }
     }
 
     button {
       background-color: transparent;
       padding: 16px;
-      color: rgba(0, 0, 0, 0.6);
+      color: #c4c4c4;
       box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.6);
       border-radius: 15px;
-      font-weight: 600;
       max-height: 32px;
       max-width: 480px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      border: 2px solid #c4c4c4;
+
+      &:hover {
+        background-color: #202132;
+      }
     }
   }
 `;
@@ -117,13 +127,26 @@ const Recommandation = styled.div`
   align-items: center;
   color: #0a66c2;
   font-size: 14px;
+
+  img {
+    margin-left: 10px;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const BannerCard = styled(FollowCard)`
   padding: 0;
   img {
+    display: block;
     width: 100%;
     height: 100%;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 42px;
   }
 `;
 
